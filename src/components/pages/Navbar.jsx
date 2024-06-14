@@ -48,8 +48,10 @@ const components = [
 
 function Navbar() {
   return (
-    <header className="flex justify-between items-center py-[6.5px] px-10 border-b-2">
-      <div className="">Logo</div>
+    <header className="flex justify-between items-center py-3 px-10">
+      <div className="">
+        <h1 className="font-bold text-3xl">Logo</h1>     
+      </div>
       <div className="hidden lg:block">
         <NavigationMenu>
           <NavigationMenuList>
@@ -91,7 +93,7 @@ function Navbar() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Button href="/docs" legacyBehavior passHref>
+              <Button className="shadow-none" href="/docs" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
               </Button>
             </NavigationMenuItem>
