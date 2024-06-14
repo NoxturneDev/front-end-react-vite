@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Sidebar() {
   return (
-    <section className="shadow-lg w-80 h-screen py-3 flex flex-col justify-between">
+    <section className="shadow-lg w-80 min-h-screen py-3 flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-around">
           <Avatar>
