@@ -79,7 +79,7 @@ function ChatPage({title, bg}) {
     <>
       <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
         <div className="p-5">
-          <div className="pb-5 border-b mb-5">
+          <div className={`py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
             <h1 className="text-lxl font-semibold">{title}</h1>
           </div>
           {/* {bubbleChat.map((item) => (

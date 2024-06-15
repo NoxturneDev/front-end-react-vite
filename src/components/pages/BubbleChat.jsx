@@ -10,7 +10,7 @@ function BubbleChat({ chat, variant }) {
               <h1 className="text-justify">{chat}</h1>
             </div>
             <div>
-              <Avatar>
+              <Avatar className="-z-10">
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
@@ -19,7 +19,7 @@ function BubbleChat({ chat, variant }) {
         ) : (
           <>
             <div>
-              <Avatar>
+              <Avatar className="-z-10">
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
