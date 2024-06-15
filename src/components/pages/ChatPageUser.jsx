@@ -83,12 +83,14 @@ function ChatPage({title, bg, type}) {
         className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
         <div className="p-5">
           <div
-            className={`flex justify-start items-center py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
-            <h1 className="text-lxl font-semibold">{title}</h1>
-            {socket && (
-              <FaCheck/>
-            )}
-            {aiLoading === true ? 'Loading...' : ''}
+            className={`flex flex-col justify-center items-start py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
+            <div className="flex justify-start items-center gap-2">
+              <h1 className="text-lxl font-semibold">{title}</h1>
+              {socket && (
+                <FaCheck color="blue"/>
+              )}
+            </div>
+            {aiLoading === true ? 'Typing...' : ''}
           </div>
           {bubbleChat.map((item) => (
             <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>

@@ -3,6 +3,8 @@
 import {Button} from "@/components/ui/button";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {FaBell} from "react-icons/fa";
+import { FaCircleUser } from "react-icons/fa6";
+
 
 import * as React from "react";
 
@@ -28,6 +30,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {FaPerson} from "react-icons/fa6";
 
 function Sidebar() {
   const [chatrooms, setChatrooms] = useState([])
@@ -76,7 +79,7 @@ function Sidebar() {
     <section className="shadow-lg min-h-screen min-w-72 py-3 flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-around">
-          <h1 className="font-semibold text-xl">Daftar Pelanggan</h1>
+          <h1 className="font-semibold text-lg">Daftar Pelanggan</h1>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button className="rounded-lg">
@@ -136,11 +139,8 @@ function Sidebar() {
 
 function ListItem({children}) {
   return (
-    <li className="flex items-center space-x-2">
-      <Avatar className="w-7 h-7">
-        <AvatarImage src="https://github.com/vercel.png" alt="@shadcn"/>
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
+    <li className="flex items-center space-x-2 shadow-md p-4 bg-blue-500 text-white">
+      <FaCircleUser  className="w-10"/>
       <a href="#" className="text-md font-semibold">
         {children}
       </a>
