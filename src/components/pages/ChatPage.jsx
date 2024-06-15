@@ -26,7 +26,7 @@ function ChatPage({ title }) {
     <div className="flex flex-col border-r justify-between p-5 w-1/2 h-screen">
       <div>
         <div className="pb-5 border-b mb-5">
-          <h1 className="text-xl font-semibold">{title}</h1>
+          <h1 className="text-lxl font-semibold">{title}</h1>
         </div>
         {bubbleChat.map((item) => (
           <BubbleChat key={item.id} chat={item.chat} variant="reciver" />

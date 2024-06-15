@@ -48,9 +48,9 @@ const components = [
 
 function Navbar() {
   return (
-    <header className="flex justify-between items-center py-3 px-10">
+    <header className="flex bg-white justify-between items-center py-3 px-10">
       <div className="">
-        <h1 className="font-bold text-3xl">Logo</h1>     
+        <h1 className="font-bold text-3xl">UNIITEK</h1>     
       </div>
       <div className="hidden lg:block">
         <NavigationMenu>
