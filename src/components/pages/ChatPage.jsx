@@ -4,31 +4,34 @@ import BubbleChat from "./BubbleChat";
 import {useEffect, useState} from "react";
 import {FaCheck} from "react-icons/fa";
 
-const senderChat = [
-  "buatkan aku paragraf mengenai design interior yang minimalis, aman untuk anak kecil, dan ergonomis"
-]
-
-const AIChat = [
-  "Desain interior minimalis yang aman untuk anak kecil dan ergonomis adalah kombinasi yang harmonis antara estetika dan fungsi. Penekanan pada garis-garis bersih dan ruang terbuka menciptakan lingkungan yang luas dan minim kekacauan, sementara penggunaan bahan yang ramah anak dan penempatan furnitur yang cermat memastikan keamanan dan kenyamanan. Permukaan yang halus, sudut yang membulat, dan penyimpanan yang mudah diakses meminimalkan risiko cedera, sedangkan tinggi meja dan kursi yang disesuaikan dengan usia anak mendukung postur yang baik dan mendorong kemandirian. Desain ini menciptakan ruang yang tenang dan merangsang, di mana anak-anak dapat bermain, belajar, dan berkembang dengan aman dan nyaman."
-]
-
-function ChatPage({title, bg}) {
+function ChatPage({title, bg, type}) {
   const [aiLoading, setAILoading] = useState(false)
   const [socket, setSocket] = useState(null)
   const [chat, setChat] = useState("");
   const [bubbleChat, setBubbleChat] = useState([]);
-  const [replies, setReplies] = useState([]);
+  const chatHistory = [];
 
-  // TODO: add api call to get previous chat
-  // TODO: add loading state for API
-  const handleAddChat = (type) => {
+  const handleAddChatWithoutPrompt = () => {
     const newChat = {
       id: bubbleChat.length + 1,
       chat: chat,
       type: "sender",
     }
 
-    sendChat(chat);
+    sendChat(newChat);
+    setBubbleChat((prev) => [...prev, newChat]);
+    setChat("");
+  }
+
+  const handleAddChat = (type) => {
+    const newChat = {
+      id: bubbleChat.length + 1,
+      chat: chat,
+      type: "sender",
+      prompt_type: type,
+    }
+
+    sendChat(newChat);
     setBubbleChat((prev) => [...prev, newChat]);
     setChat("");
   };
@@ -51,11 +54,12 @@ function ChatPage({title, bg}) {
     }
   }
 
-  const sendChat = () => {
+  const sendChat = (chatObj) => {
     const temp = {
       phoneNumber: "123",
       message: chat,
       prompt: chat,
+      prompt_type: chatObj.prompt_type,
     }
 
     socket.send(JSON.stringify(temp))
@@ -68,7 +72,7 @@ function ChatPage({title, bg}) {
 
 
   useEffect(() => {
-    if(socket === null) return;
+    if (socket === null) return;
 
     socket.onmessage = (msg) => {
       console.log(msg.data);
@@ -87,12 +91,14 @@ function ChatPage({title, bg}) {
 
   return (
     <>
-      <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
+      <div
+        className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
         <div className="p-5">
-          <div className={`flex justify-start items-center py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
+          <div
+            className={`flex justify-start items-center py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
             <h1 className="text-lxl font-semibold">{title}</h1>
             {socket && (
-              <FaCheck />
+              <FaCheck/>
             )}
             {aiLoading === true ? 'Loading...' : ''}
           </div>
@@ -100,15 +106,36 @@ function ChatPage({title, bg}) {
             <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>
           ))}
         </div>
-        <div className="flex gap-x-5 bg-white px-5 py-3 sticky bottom-0">
-          <Input value={chat} onChange={handleChange} className="w-full rounded placeholder:text-slate-400" type="test" placeholder="Type yout message here" />
-          <Button onClick={handleAddChat} className="bg-blue-500 rounded text-white">
-            Submit
-          </Button>
+        <div className="flex flex-col gap-5 bg-white px-5 py-3 sticky bottom-0">
+          {type === 'AI' && (
+            <>
+              <Button onClick={() => handleAddChat("suggestion")} className="bg-blue-500 rounded text-white">
+                Rekomendasi & Saran
+              </Button>
+              <Button onClick={() => handleAddChat("translate")} className="bg-blue-500 rounded text-white">
+                Terjemahkan
+              </Button>
+              <Button onClick={() => handleAddChat("summmary")} className="bg-blue-500 rounded text-white">
+                Rangkuman
+              </Button>
+              <Button onClick={() => handleAddChat("sentimen")} className="bg-blue-500 rounded text-white">
+                Analisis Sentimen
+              </Button>
+            </>
+          )}
+          <div className="flex gap-x-5 bg-white px-5 py-3 sticky bottom-0">
+            <Input disabled={aiLoading} value={chat} onChange={handleChange}
+                   className="w-full rounded placeholder:text-slate-400" type="test"
+                   placeholder="Type yout message here"/>
+            <Button onClick={handleAddChatWithoutPrompt} className="bg-blue-500 rounded text-white">
+              Submit
+            </Button>
+          </div>
         </div>
       </div>
     </>
-  );
+  )
+    ;
 }
 
 export default ChatPage;
