@@ -50,7 +50,7 @@ function Navbar() {
   return (
     <header className="flex bg-white justify-between items-center py-3 px-10">
       <div className="">
-        <h1 className="font-bold text-3xl">UNIITEK</h1>     
+        <h1 className="font-bold text-3xl">UNIITECT</h1>     
       </div>
       <div className="hidden lg:block">
         <NavigationMenu>
@@ -125,9 +125,9 @@ function Navbar() {
 
         <div className="hidden md:flex md:space-x-4">
           <Button className="text-md" variant="ghost">
-            SignIn
+            Sign In
           </Button>
-          <Button className="text-mc hover:text-black bg-blue-500 text-white rounded">Get Started</Button>
+          <Button className="hover:text-black bg-blue-500 text-white">Get Started</Button>
         </div>
       </div>
     </header>
