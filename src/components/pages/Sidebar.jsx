@@ -73,7 +73,7 @@ function Sidebar() {
   }, []);
 
   return (
-    <section className="shadow-lg w-80 min-h-screen py-3 flex flex-col justify-between">
+    <section className="shadow-lg min-h-screen min-w-72 py-3 flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-around">
           <h1 className="font-semibold text-xl">Daftar Pelanggan</h1>
@@ -110,7 +110,6 @@ function Sidebar() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <p className="px-4 mt-3 text-slate-500 text-base">Lorem ipsum dolor sit amet consectetur adipisicing</p>
         <nav className="mt-4 px-4">
           <ul className="flex flex-col gap-y-3">
             {chatrooms && chatrooms.map((cr) => (
@@ -122,10 +121,7 @@ function Sidebar() {
         </nav>
       </div>
       <div className="px-4">
-        <div>
-          <p className="mb-3 text-base text-slate-500">Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-        </div>
-        <div className="flex items-center justify-center gap-x-5 mt-5">
+        <div className="flex items-center gap-x-5 mt-5">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn"/>
             <AvatarFallback>CN</AvatarFallback>
