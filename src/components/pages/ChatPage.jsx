@@ -11,7 +11,7 @@ const AIChat = [
   "Desain interior minimalis yang aman untuk anak kecil dan ergonomis adalah kombinasi yang harmonis antara estetika dan fungsi. Penekanan pada garis-garis bersih dan ruang terbuka menciptakan lingkungan yang luas dan minim kekacauan, sementara penggunaan bahan yang ramah anak dan penempatan furnitur yang cermat memastikan keamanan dan kenyamanan. Permukaan yang halus, sudut yang membulat, dan penyimpanan yang mudah diakses meminimalkan risiko cedera, sedangkan tinggi meja dan kursi yang disesuaikan dengan usia anak mendukung postur yang baik dan mendorong kemandirian. Desain ini menciptakan ruang yang tenang dan merangsang, di mana anak-anak dapat bermain, belajar, dan berkembang dengan aman dan nyaman."
 ]
 
-function ChatPage({title}) {
+function ChatPage({title, bg}) {
   const [socket, setSocket] = useState(null)
   const [chat, setChat] = useState("");
   const [bubbleChat, setBubbleChat] = useState([]);
@@ -76,22 +76,46 @@ function ChatPage({title}) {
   }, [socket, chat]);
 
   return (
-    <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between p-5 w-1/2 h-screen`}>
-      <div>
-        <div className="pb-5 border-b mb-5">
-          <h1 className="text-lxl font-semibold">{title}</h1>
+    <>
+      <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
+        <div className="p-5">
+          <div className="pb-5 border-b mb-5">
+            <h1 className="text-lxl font-semibold">{title}</h1>
+          </div>
+          {/* {bubbleChat.map((item) => (
+            <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>
+          ))} */}
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
+          <BubbleChat chat={senderChat} variant={"sender"} />
+          <BubbleChat chat={AIChat} variant={"receiver"} />
         </div>
-        {bubbleChat.map((item) => (
-          <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>
-        ))}
+        <div className="flex gap-x-5 bg-white px-5 py-3 sticky bottom-0">
+          <Input value={chat} onChange={handleChange} className="w-full rounded placeholder:text-slate-400" type="test" placeholder="Type yout message here" />
+          <Button onClick={handleAddChat} className="bg-blue-500 rounded text-white">
+            Submit
+          </Button>
+        </div>
       </div>
-      <div className="flex gap-x-5">
-        <Input value={chat} onChange={handleChange} className="w-full rounded placeholder:text-slate-400 border-slate-400" type="test" placeholder="Type yout message here" />
-        <Button onClick={handleAddChat} className="bg-blue-500 rounded text-white">
-          Submit
-        </Button>
-      </div>
-    </div>
+    </>
   );
 }
 
