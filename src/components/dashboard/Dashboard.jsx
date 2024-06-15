@@ -1,11 +1,12 @@
 import Sidebar from "../pages/Sidebar";
 import ChatPage from "../pages/ChatPage";
+import ChatPageUser from "@/components/pages/ChatPageUser.jsx";
 
 function Dashboard() {
   return (
     <section className="flex">
       <Sidebar />
-      <ChatPage title={"+62 818091816"} />
+      <ChatPageUser title={"081981389131"} />
       <ChatPage bg title={"Helper AI"} type={"AI"}/>
     </section>
   );

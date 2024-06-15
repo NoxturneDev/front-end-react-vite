@@ -112,11 +112,12 @@ function Sidebar() {
         </div>
         <nav className="mt-4 px-4">
           <ul className="flex flex-col gap-y-3">
-            {chatrooms && chatrooms.map((cr) => (
-              <>
-                <ListItem>{cr.phone_number}</ListItem>
-              </>
-            ))}
+            {/*{chatrooms && chatrooms.map((cr) => (*/}
+            {/*  <>*/}
+            {/*    <ListItem>{cr.phone_number}</ListItem>*/}
+            {/*  </>*/}
+            {/*))}*/}
+            <ListItem>081981389131</ListItem>
           </ul>
         </nav>
       </div>
@@ -126,7 +127,7 @@ function Sidebar() {
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn"/>
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <h1 className="font-smibold text-lg">Admin123</h1>
+          <h1 className="font-semibold text-md">Admin UNIITECT</h1>
         </div>
       </div>
     </section>
