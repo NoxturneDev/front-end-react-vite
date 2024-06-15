@@ -6,7 +6,7 @@ function Dashboard() {
     <section className="flex">
       <Sidebar />
       <ChatPage title={"+62 818091816"} />
-      <ChatPage title={"Helper AI"} />
+      <ChatPage bg title={"Helper AI"} />
     </section>
   );
 }

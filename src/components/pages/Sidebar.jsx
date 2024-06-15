@@ -18,7 +18,7 @@ function Sidebar() {
           <h1 className="font-semibold text-xl">Daftar Pelanggan</h1>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button>
+              <Button className="rounded-lg">
                 <FaBell />
               </Button>
             </DropdownMenuTrigger>
@@ -45,7 +45,7 @@ function Sidebar() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <p className="px-4 mt-3 text-base">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+        <p className="px-4 mt-3 text-slate-500 text-base">Lorem ipsum dolor sit amet consectetur adipisicing</p>
         <nav className="mt-4 px-4">
           <ul className="flex flex-col gap-y-3">
             <ListItem>Home</ListItem>
@@ -58,15 +58,14 @@ function Sidebar() {
       </div>
       <div className="px-4">
         <div>
-          <p className="mb-3 text-base">Lorem ipsum dolor sit amet consectetur, adipisicing</p>
-          <Button className="bg-blue-500 rounded-md w-full text-white">Coba Sekarang</Button>
+          <p className="mb-3 text-base text-slate-500">Lorem ipsum dolor sit amet consectetur, adipisicing</p>
         </div>
-        <div className="flex items-center justify-around mt-5">
+        <div className="flex items-center justify-center gap-x-5 mt-5">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <h1 className="font-smibold text-2xl">USername 122</h1>
+          <h1 className="font-smibold text-lg">Admin123</h1>
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import BubbleChat from "./BubbleChat";
 import { useState } from "react";
 
-function ChatPage({ title }) {
+function ChatPage({ title, bg }) {
   const [chat, setChat] = useState("");
   const [bubbleChat, setBubbleChat] = useState([]);
 
@@ -23,7 +23,7 @@ function ChatPage({ title }) {
   };
 
   return (
-    <div className="flex flex-col border-r justify-between p-5 w-1/2 h-screen">
+    <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between p-5 w-1/2 h-screen`}>
       <div>
         <div className="pb-5 border-b mb-5">
           <h1 className="text-lxl font-semibold">{title}</h1>
@@ -33,7 +33,7 @@ function ChatPage({ title }) {
         ))}
       </div>
       <div className="flex gap-x-5">
-        <Input value={chat} onChange={handleChange} className="w-full" type="email" placeholder="Email" />
+        <Input value={chat} onChange={handleChange} className="w-full rounded placeholder:text-slate-400 border-slate-400" type="test" placeholder="Type yout message here" />
         <Button onClick={handleAddChat} className="bg-blue-500 rounded text-white">
           Submit
         </Button>

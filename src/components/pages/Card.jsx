@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 
 function Card() {
   return (
-		<div className="w-1/4 shadow-lg rounded-md .3
-		">
+		<div className="w-1/4 shadow-lg rounded-md">
 			<div>
 				<img src="https://github.com/vercel.png" alt="" />
 			</div>

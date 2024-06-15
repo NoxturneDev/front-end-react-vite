@@ -12,7 +12,7 @@ function LandingPage() {
      <Hero />
      <About />
      <Feature />
-     <Contact />
+     {/* <Contact /> */}
      <Footer />
     </>
   )
