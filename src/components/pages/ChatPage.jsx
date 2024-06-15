@@ -112,10 +112,7 @@ function ChatPage({title, bg, type}) {
               <Button onClick={() => handleAddChat("suggestion")} className="bg-blue-500 rounded text-white">
                 Rekomendasi & Saran
               </Button>
-              <Button onClick={() => handleAddChat("translate")} className="bg-blue-500 rounded text-white">
-                Terjemahkan
-              </Button>
-              <Button onClick={() => handleAddChat("summmary")} className="bg-blue-500 rounded text-white">
+              <Button onClick={() => handleAddChat("summary")} className="bg-blue-500 rounded text-white">
                 Rangkuman
               </Button>
               <Button onClick={() => handleAddChat("sentimen")} className="bg-blue-500 rounded text-white">
