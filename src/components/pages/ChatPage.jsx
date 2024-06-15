@@ -2,6 +2,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import BubbleChat from "./BubbleChat";
 import {useEffect, useState} from "react";
+import {FaCheck} from "react-icons/fa";
 
 const senderChat = [
   "buatkan aku paragraf mengenai design interior yang minimalis, aman untuk anak kecil, dan ergonomis"
@@ -43,6 +44,7 @@ function ChatPage({title, bg}) {
     s.onclose = () => {
       console.log("Disconnected from websocket");
       setSocket(null)
+      connectWebSocket()
     }
   }
 
@@ -79,8 +81,11 @@ function ChatPage({title, bg}) {
     <>
       <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
         <div className="p-5">
-          <div className={`py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
+          <div className={`flex justify-start items-center py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
             <h1 className="text-lxl font-semibold">{title}</h1>
+            {socket && (
+              <FaCheck />
+            )}
           </div>
           {/* {bubbleChat.map((item) => (
             <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>
