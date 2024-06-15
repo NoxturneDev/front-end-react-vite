@@ -13,17 +13,20 @@ const AIChat = [
 ]
 
 function ChatPage({title, bg}) {
+  const [aiLoading, setAILoading] = useState(false)
   const [socket, setSocket] = useState(null)
   const [chat, setChat] = useState("");
   const [bubbleChat, setBubbleChat] = useState([]);
   const [replies, setReplies] = useState([]);
 
-  const handleAddChat = () => {
+  // TODO: add api call to get previous chat
+  // TODO: add loading state for API
+  const handleAddChat = (type) => {
     const newChat = {
       id: bubbleChat.length + 1,
       chat: chat,
       type: "sender",
-    };
+    }
 
     sendChat(chat);
     setBubbleChat((prev) => [...prev, newChat]);
@@ -56,11 +59,13 @@ function ChatPage({title, bg}) {
     }
 
     socket.send(JSON.stringify(temp))
+    setAILoading(true)
   }
 
   useEffect(() => {
     connectWebSocket();
   }, []);
+
 
   useEffect(() => {
     if(socket === null) return;
@@ -72,9 +77,12 @@ function ChatPage({title, bg}) {
         chat: JSON.parse(msg.data),
         type: "receiver"
       };
+
       setBubbleChat((prev) => [...prev, newChat]);
       setChat(" ")
+      setAILoading(false)
     }
+
   }, [socket, chat]);
 
   return (
@@ -86,32 +94,11 @@ function ChatPage({title, bg}) {
             {socket && (
               <FaCheck />
             )}
+            {aiLoading === true ? 'Loading...' : ''}
           </div>
-          {/* {bubbleChat.map((item) => (
+          {bubbleChat.map((item) => (
             <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>
-          ))} */}
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
+          ))}
         </div>
         <div className="flex gap-x-5 bg-white px-5 py-3 sticky bottom-0">
           <Input value={chat} onChange={handleChange} className="w-full rounded placeholder:text-slate-400" type="test" placeholder="Type yout message here" />
