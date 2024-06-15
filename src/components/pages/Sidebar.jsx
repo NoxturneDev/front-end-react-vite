@@ -45,8 +45,8 @@ function Sidebar() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <p className="px-7 mt-3 text-base">Lorem ipsum dolor sit amet consectetur adipisicing</p>
-        <nav className="mt-4 px-7">
+        <p className="px-4 mt-3 text-base">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+        <nav className="mt-4 px-4">
           <ul className="flex flex-col gap-y-3">
             <ListItem>Home</ListItem>
             <ListItem>Pengaturan</ListItem>
@@ -56,7 +56,7 @@ function Sidebar() {
           </ul>
         </nav>
       </div>
-      <div className="px-7">
+      <div className="px-4">
         <div>
           <p className="mb-3 text-base">Lorem ipsum dolor sit amet consectetur, adipisicing</p>
           <Button className="bg-blue-500 rounded-md w-full text-white">Coba Sekarang</Button>
@@ -80,7 +80,7 @@ function ListItem({ children }) {
         <AvatarImage src="https://github.com/vercel.png" alt="@shadcn" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <a href="#" className="text-lg font-semibold">
+      <a href="#" className="text-md font-semibold">
         {children}
       </a>
     </li>
