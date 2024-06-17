@@ -1,18 +1,16 @@
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import BubbleChat from "./BubbleChat";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-const senderChat = [
-  "buatkan aku paragraf mengenai design interior yang minimalis, aman untuk anak kecil, dan ergonomis"
-]
+const senderChat = ["Balasan"];
 
 const AIChat = [
-  "Desain interior minimalis yang aman untuk anak kecil dan ergonomis adalah kombinasi yang harmonis antara estetika dan fungsi. Penekanan pada garis-garis bersih dan ruang terbuka menciptakan lingkungan yang luas dan minim kekacauan, sementara penggunaan bahan yang ramah anak dan penempatan furnitur yang cermat memastikan keamanan dan kenyamanan. Permukaan yang halus, sudut yang membulat, dan penyimpanan yang mudah diakses meminimalkan risiko cedera, sedangkan tinggi meja dan kursi yang disesuaikan dengan usia anak mendukung postur yang baik dan mendorong kemandirian. Desain ini menciptakan ruang yang tenang dan merangsang, di mana anak-anak dapat bermain, belajar, dan berkembang dengan aman dan nyaman."
-]
+  "Saya membutuhkan meja dengan ukuran 10x10 untuk ruang tamu saya",
+];
 
-function ChatPage({title, bg}) {
-  const [socket, setSocket] = useState(null)
+function ChatPage({ title, bg }) {
+  const [socket, setSocket] = useState(null);
   const [chat, setChat] = useState("");
   const [bubbleChat, setBubbleChat] = useState([]);
   const [replies, setReplies] = useState([]);
@@ -34,50 +32,50 @@ function ChatPage({title, bg}) {
   };
 
   const connectWebSocket = () => {
-    const s = new WebSocket("ws://127.0.0.1:3001/ws/ai?phoneNumber=123")
+    const s = new WebSocket("ws://127.0.0.1:3001/ws/ai?phoneNumber=123");
 
     s.onopen = () => {
       console.log("Connected to websocket");
-      setSocket(s)
-    }
+      setSocket(s);
+    };
     s.onclose = () => {
       console.log("Disconnected from websocket");
-      setSocket(null)
-    }
-  }
+      setSocket(null);
+    };
+  };
 
   const sendChat = () => {
     const temp = {
       phoneNumber: "123",
       message: chat,
       prompt: chat,
-    }
+    };
 
-    socket.send(JSON.stringify(temp))
-  }
+    socket.send(JSON.stringify(temp));
+  };
 
   useEffect(() => {
     connectWebSocket();
   }, []);
 
   useEffect(() => {
-    if(socket === null) return;
+    if (socket === null) return;
 
     socket.onmessage = (msg) => {
       console.log(msg.data);
       const newChat = {
         id: bubbleChat.length + 1,
         chat: JSON.parse(msg.data),
-        type: "receiver"
+        type: "receiver",
       };
       setBubbleChat((prev) => [...prev, newChat]);
-      setChat(" ")
-    }
+      setChat(" ");
+    };
   }, [socket, chat]);
 
   return (
     <>
-      <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between w-1/2 h-screen overflow-y-scroll relative`}>
+      <div className={`flex flex-col border-r ${bg ? "bg-slate-100" : "bg-transparent"} justify-between h-screen overflow-y-scroll relative w-full`}>
         <div className="p-5">
           <div className={`py-5 border-b mb-5 sticky top-0 ${bg ? "bg-slate-100" : "bg-white"} z-100`}>
             <h1 className="text-lxl font-semibold">{title}</h1>
@@ -85,28 +83,8 @@ function ChatPage({title, bg}) {
           {/* {bubbleChat.map((item) => (
             <BubbleChat key={item.id} chat={item.chat} variant={item.type}/>
           ))} */}
-          <BubbleChat chat={senderChat} variant={"sender"} />
           <BubbleChat chat={AIChat} variant={"receiver"} />
           <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
-          <BubbleChat chat={senderChat} variant={"sender"} />
-          <BubbleChat chat={AIChat} variant={"receiver"} />
         </div>
         <div className="flex gap-x-5 bg-white px-5 py-3 sticky bottom-0">
           <Input value={chat} onChange={handleChange} className="w-full rounded placeholder:text-slate-400" type="test" placeholder="Type yout message here" />
